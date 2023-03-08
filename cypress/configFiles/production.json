@@ -1,0 +1,9 @@
+{
+  "baseUrl": "https://app.rapidreplay.co/",
+  "userServiceUrl": "https://user.sportngin.com",
+  "statNginUrl": "http://api-stat-ngin.sportngin.com/users/auth/ngin/callback",
+  "graphQlApi": "https://api-prod.rapidreplay.co/graphql",
+  "env": {
+    "environment": "production"
+  } 
+}

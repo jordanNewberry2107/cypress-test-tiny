@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://dev.rapidreplay.co/",
+  "userServiceUrl": "https://user.sportngin.com.dev",
+  "statNginUrl": "http://api-stat-ngin.sportngin.com.dev/users/auth/ngin/callback",
+  "env": {
+    "environment": "development"
+  } 
+}

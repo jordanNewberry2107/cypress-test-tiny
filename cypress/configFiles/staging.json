@@ -1,0 +1,9 @@
+{
+  "baseUrl": "https://dev.rapidreplay.co/",
+  "userServiceUrl": "https://user.stage.ngin-staging.com",
+  "statNginUrl": "http://api-stat-ngin.stage.ngin-staging.com/users/auth/ngin/callback",
+  "graphQlApi": "https://api-dev.rapidreplay.co/graphql",
+  "env": {
+    "environment": "staging"
+  } 
+}

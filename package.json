@@ -9,12 +9,15 @@
     "cypress:version": "cypress version",
     "cypress:info": "cypress info",
     "cypress:cache:list": "cypress cache list",
-    "list-videos": "ls -l cypress/videos"
+    "list-videos": "ls -l cypress/videos",
+    "cy:staging": "yarn cypress open --env fileConfig=staging",
+    "cy:production": "yarn cypress open --env fileConfig=production"
   },
   "keywords": [],
   "author": "Cypress-io",
   "license": "ISC",
   "devDependencies": {
+    "cypress": "^10.7.0"
   },
   "repository": {
     "type": "git",

@@ -23,3 +23,26 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+Cypress.Commands.add('loginApi', (username, password) => {
+  cy.session([username, password], () => {
+    cy.request({
+      method: 'POST',
+      url: Cypress.config('userServiceUrl') + '/oauth/token',
+      body: {
+        client_id: Cypress.env('LOGIN_CLIENT_ID'),
+        client_secret: Cypress.env('LOGIN_CLIENT_SECRET'),
+        grant_type: 'password',
+        username,
+        password,
+        redirect_uri: Cypress.config('statNginUrl')
+      }
+    }).then((response) => {
+      const bearerToken = response.body.access_token
+      expect(response.status).to.eq(200)
+      cy.request({
+        url: Cypress.config('userServiceUrl') + '/users/create',
+        headers: { Authorization: 'Bearer ' + bearerToken }
+      })
+    })
+  })
+})   
