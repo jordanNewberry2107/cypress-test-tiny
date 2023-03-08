@@ -1,0 +1,21 @@
+name: Rapid Replay Cypress Tests
+on: 
+  [pull_request]
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        timeout-minutes: 25
+        with:
+          browser: chrome
+          headed: true
+          record: true
+        env:
+          CYPRESS_fileConfig: staging
+          CYPRESS_LOGIN_CLIENT_ID: ${{ secrets.LOGIN_CLIENT_ID }}
+          CYPRESS_LOGIN_CLIENT_SECRET: ${{ secrets.LOGIN_CLIENT_SECRET }}
+          CYPRESS_QA_TEST_PASSWORD: ${{ secrets.QA_TEST_PASSWORD }}
