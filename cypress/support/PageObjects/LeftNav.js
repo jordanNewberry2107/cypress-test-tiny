@@ -1,6 +1,6 @@
 class LeftNav {
   viewLiveStreamPage () {
-    cy.get('a').contains('span', 'Live Stream').click()
+    cy.contains('a span', 'Livestream').click()
   }
 }
 

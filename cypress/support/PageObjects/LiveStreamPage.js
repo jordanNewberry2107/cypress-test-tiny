@@ -3,8 +3,8 @@ class LiveStreamPage {
     cy.get('div').contains('a', 'Create new stream').click({force: true})
   }
 
-  clickNextButton () {
-    cy.get('button[type="button"] > span').should('contain', 'Create Livestream').click({force: true})
+  submitCreateLivestreamForm () {
+    cy.contains('button > span', 'Create Livestream').click({force: true})
   }
 
   deleteLiveStream () {
@@ -30,23 +30,24 @@ class LiveStreamPage {
   }
 
 
-  enterStreamDetails (time, eventName, opponent) {
-    cy.get('[data-cy="stream-form-start"] > div > div > div > input').click()
-    cy.get('div.react-datepicker-time__input > .react-datepicker-time__input').click().type(time)
-    cy.get('[data-cy="stream-form-title"] label > div > input').click({force: true}).type(eventName)
-    cy.get('[data-cy="stream-form-opponent"] label > div > input').click().type(opponent)
+  enterStreamDetails (time, eventName, homeTeam, opponent) {
+    cy.wait(1000)
+    cy.get('[data-cy="stream-form-start"] > div div > div > input').click({force: true}).then(() => {
+      cy.get('input.react-datepicker-time__input').type(time, {force: true})
+      // cy.get('div.react-datepicker__day[aria-selected="true"]').click({force: true})
+    })
+    cy.get('#page-container').click({force: true})
+    cy.get('[data-cy="stream-form-title"] label > div > input').type(eventName)
+    cy.get('[data-cy="tournament-home-team"] label div > input').type(homeTeam)
+    cy.get('[data-cy="tournament-away-team"] label div > input').type(opponent)
   }
 
   saveStreamEdits () {
     cy.contains('button[type="button"]', 'Save').click()
   }
 
-  selectIOSStreamingDevice () {
-    cy.get('[data-cy="stream-form-streaming-type"] > div > div > div').click({force: true}).type('{downArrow}{enter}')
-  }
-
-  selectAndroidStreamingDevice () {
-    cy.get('[data-cy="stream-form-streaming-type"] > div > div > div').click({force: true}).type('{downArrow}{downArrow}{enter}')
+  selectStreamingDevice (deviceName) {
+    cy.get('[data-cy="stream-form-streaming-type"] > div > div > div').click({force: true}).type(`${deviceName}{enter}`)
   }
 }
 
